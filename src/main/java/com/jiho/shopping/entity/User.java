@@ -15,14 +15,13 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "user")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idx;
+    private int id;
     private String nick;
     @Column(unique = true)
-    private String id;
-    private String pw;
+    private String username;
+    private String password;
     private String phoneNum;
     private String address;
     private String item;

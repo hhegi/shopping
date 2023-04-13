@@ -3,6 +3,7 @@ package com.jiho.shopping.config.auth;
 import com.jiho.shopping.entity.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.Collection;
 public class PrincipalDetails implements UserDetails {
     private final long serialVersionUID = 1L;
     private User user;
+    private String AUTHORITY;
 
     public PrincipalDetails(User user){
         this.user = user;
@@ -19,21 +21,19 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
-        Collection<GrantedAuthority> collector = new ArrayList<>();
-        collector.add(()->{
-            return user.getRole();
-        });
-        return collector;
+        ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
+        auth.add(new SimpleGrantedAuthority("ROLE_USER"));
+        return auth;
     }
 
     @Override
     public String getPassword(){
-        return user.getPw();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername(){
-        return user.getId();
+        return user.getUsername();
     }
 
     @Override

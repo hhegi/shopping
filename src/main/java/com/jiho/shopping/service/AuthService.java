@@ -17,10 +17,10 @@ public class AuthService {
 
     @Transactional
     public User signup(User user){
-        String rawPassword = user.getPw();
+        String rawPassword = user.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);
-        user.setPw(encPassword);
-        user.setRole("ROLE_USER");
+        user.setPassword(encPassword);
+        user.setRole(user.getRole());
 
         User userEntity = userRepository.save(user);
         return userEntity;

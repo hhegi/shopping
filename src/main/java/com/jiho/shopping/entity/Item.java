@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idx;
+    private int id;
     private String title;
     private String name;
     private String image;
@@ -24,7 +24,7 @@ public class Item {
     private int price;
     private String contents;
     @ManyToOne
-    @JoinColumn(name="idx" , insertable = false, updatable = false)
+    @JoinColumn(name="id", insertable = false,updatable = false)
     private User user;
     private String address;
     private LocalDateTime uploadedAt;
