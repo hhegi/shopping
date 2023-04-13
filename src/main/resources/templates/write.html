@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>write</title>
+</head>
+<body>
+    <div>
+        <form action="/board/postBoard" method="post">
+            <div>
+                <label class="form-label" for="title">게시글 제목</label>
+                <input name="title" type="text" id="title"> <br>
+            </div>
+            <div>
+                <label class="form-label" for="name">상품 이름 </label>
+                <input name="name" type="text" id="name"> <br>
+            </div>
+            <div>
+                <label class="form-label">카테고리 </label><br>
+            </div>
+            <div>
+                <label class="form-label" for="price">상품 가격</label>
+                <input name="price" type="text" id="price"> 원 <br><br>
+            </div>
+            <div>
+                <label class="form-label" for="contents">게시글 내용</label>
+                <textarea name="contents" id="contents"></textarea> <br>
+            </div>
+            <div>
+                <label class="form-label" for="image">상품 이미지</label>
+                <input type="file" id="image" name="image">
+            </div>
+            <br><br>
+            <button>글쓰기</button>
+        </form>
+    </div>
+
+</body>
+</html>
