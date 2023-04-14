@@ -24,7 +24,7 @@ public class Item {
     private int price;
     private String contents;
     @ManyToOne
-    @JoinColumn(name="id", insertable = false,updatable = false)
+    @JoinColumn(name="userId")
     private User user;
     private String address;
     private LocalDateTime uploadedAt;

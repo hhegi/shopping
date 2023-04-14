@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>중고 거래</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+<div th:replace="main.html :: nav"></div>
+<!-- SIDE BAR -->
+<div th:replace="mypage.html :: side"></div>
+
+<div class="container pt-5">
+  <div class="row gutters-sm d-flex justify-content-center">
+                      <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                        <tr>
+                          <th>번호</th>
+                          <th>제품 이름</th>
+                          <th>게시글 제목</th>
+                          <th>가격</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="myitem, i: ${myItem}">
+                          <td th:text="${i.count}">i</td>
+                          <td th:text="${myitem.getId()}">인덱스</td>
+                          <td th:text="${myitem.getName()}">제품이름</td>
+                          <td th:text="${myitem.getTitle()}">게시글제목</td>
+                          <td th:text="${myitem.getPrice()}">가격</td>
+                          <td class="btn btn-outline-dark"><a th:href="@{/item/delete/{id}(id=${myitem.getId()})}" style="text-decoration: none">삭제</a></td>
+                        </tr>
+                        </tbody>
+                      </table>
+                        </div>
+  </div>
+  </div>
+</section>
+</body>
+</html>
