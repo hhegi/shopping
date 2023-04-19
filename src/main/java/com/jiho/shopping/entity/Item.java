@@ -28,4 +28,9 @@ public class Item {
     private User user;
     private String address;
     private LocalDateTime uploadedAt;
+
+    @PrePersist
+    public void uploadDate(){
+        this.uploadedAt = LocalDateTime.now();
+    }
 }

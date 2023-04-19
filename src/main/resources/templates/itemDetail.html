@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=yes"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>중고 거래</title>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet"/>
+</head>
+<body>
+<div th:replace="~{fragments :: navi}"></div>
+<div class="py-5">
+    <div class="row gx-4 gx-lg-5 align-items-center">
+        <div class="col-md-6">
+            <img src="card-img-top mb-5 mb-md-0" th:src="@{|${item.getImagePath()}|}" alt="..." width="400">
+        </div>
+        <div class="col-md-6">
+            <h3 class="sm mb-1" th:text="|${item.getTitle}|"></h3>
+            <div class="sm mb-1" th:text="|판매자 ${user.getNick}|"></div>
+            <div class="sm mb-1" th:text="${item.getCategory}"></div>
+            <div class="sm mb-1"
+                 th:text="|${item.getUploadedAt.getMonthValue}월 ${item.getUploadedAt.getDayOfMonth}일|"></div>
+            <div th:if="${item.getUser.id == user.getId}">
+                <button type="button" th:onclick="|location.href='@{/item/modify/{id}(id=${item.getId})}'|">수정하기
+                </button>
+                <td class="btn btn-outline-dark">
+                    <a th:href="@{/item/delete/{id}(id=${item.getId()})}"
+                       style="text-decoration: none">삭제</a></td>
+            </div>
+            <div th:unless="${item.getUser.id == user.getId}">
+                <button type="button" class="btn btn-success">채팅 하기</button>
+            </div>
+            <br>
+            <br>
+            <div class="col col-sm-push-9">
+                <h3>상품 설명</h3>
+            </div>
+            <div class="col col-sm-push-9" th:text="${item.getContents}"></div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -3,10 +3,12 @@ package com.jiho.shopping.service;
 import com.jiho.shopping.entity.Item;
 import com.jiho.shopping.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +33,8 @@ public class ItemService {
         item.setImageName(imgName);
         item.setImagePath("/files/"+imgName);
 
+
+
         itemRepository.save(item);
     }
     public Item itemView(Integer id){
@@ -39,14 +43,26 @@ public class ItemService {
     }
 
     public List<Item> allItemView(){
-        return itemRepository.findAll();
+        return itemRepository.findAll(Sort.by(Sort.Direction.ASC,"uploadedAt"));
+    }
+
+    public List<Item> findItemByCategory(String category){
+
+            return itemRepository.findItemByCategory(category);
     }
 
     public void itemModify(Item item, Integer id, MultipartFile img) throws Exception{
-        String sysPath = System.getProperty("user.dir") + "src/main/resources/static/files/";
+        String rawImgName = img.getOriginalFilename();
+        String imgName = "";
+        String sysPath = System.getProperty("user.dir") + "/src/main/resources/static/files";
+
         UUID uuid = UUID.randomUUID();
-        String fileName = uuid + "_" + img.getOriginalFilename();
-        File saveFile = new File(sysPath,fileName);
+        String saveFileName = uuid + "_" + rawImgName;
+
+        imgName = saveFileName;
+
+        File saveFile = new File(sysPath, imgName);
+
         img.transferTo(saveFile);
 
         Item update = itemRepository.findItemById(id);
@@ -56,8 +72,9 @@ public class ItemService {
         update.setPrice(item.getPrice());
         update.setCategory(item.getCategory());
         update.setTitle(item.getTitle());
-        update.setImageName(fileName);
-        update.setImagePath("/files/"+fileName);
+        update.setImageName(imgName);
+        update.setImagePath("/files/"+imgName);
+
         itemRepository.save(update);
     }
 
