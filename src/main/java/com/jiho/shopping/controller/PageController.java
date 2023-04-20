@@ -43,8 +43,10 @@ public class PageController {
             model.addAttribute("user", userService.findUser(id));
 
             return "/mypage";
+        }else{
+
+            return "redirect:/main";
         }
-        return "redirect:/main";
     }
 
     @GetMapping("/user/list/{id}")

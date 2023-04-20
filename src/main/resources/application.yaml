@@ -1,4 +1,13 @@
 spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    cache: false
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/shopping?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
     username: root
@@ -17,11 +26,4 @@ spring:
     properties:
       hibernate:
         format_sql: true
-  devtools:
-    livereload:
-      enabled: true
-    restart:
-      enabled: true
-  thymeleaf:
-    cache: false
 

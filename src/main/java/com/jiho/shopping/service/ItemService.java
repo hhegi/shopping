@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +18,7 @@ public class ItemService {
     public void saveItem(Item item, MultipartFile img)throws Exception{
         String rawImgName = img.getOriginalFilename();
         String imgName = "";
-        String sysPath = System.getProperty("user.dir") + "/src/main/resources/static/files";
+        String sysPath = System.getProperty("user.dir") + "/src/main/resources/static/files/";
 
         UUID uuid = UUID.randomUUID();
         String saveFileName = uuid + "_" + rawImgName;
@@ -31,7 +30,7 @@ public class ItemService {
         img.transferTo(saveFile);
 
         item.setImageName(imgName);
-        item.setImagePath("/files/"+imgName);
+        item.setImagePath("/files/" +imgName);
 
 
 
@@ -54,7 +53,7 @@ public class ItemService {
     public void itemModify(Item item, Integer id, MultipartFile img) throws Exception{
         String rawImgName = img.getOriginalFilename();
         String imgName = "";
-        String sysPath = System.getProperty("user.dir") + "/src/main/resources/static/files";
+        String sysPath = System.getProperty("user.dir") + "/src/main/resources/static/files/";
 
         UUID uuid = UUID.randomUUID();
         String saveFileName = uuid + "_" + rawImgName;
@@ -73,7 +72,7 @@ public class ItemService {
         update.setCategory(item.getCategory());
         update.setTitle(item.getTitle());
         update.setImageName(imgName);
-        update.setImagePath("/files/"+imgName);
+        update.setImagePath("/files/" +imgName);
 
         itemRepository.save(update);
     }

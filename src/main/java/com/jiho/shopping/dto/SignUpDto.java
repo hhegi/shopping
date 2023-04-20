@@ -17,7 +17,6 @@ public class SignUpDto {
                 .nick(nick)
                 .password(password)
                 .phoneNum(phoneNum)
-                .address(address)
                 .build();
     }
 }

@@ -23,7 +23,6 @@ public class User {
     private String username;
     private String password;
     private String phoneNum;
-    private String address;
     private String item;
     private LocalDateTime createdAt;
 

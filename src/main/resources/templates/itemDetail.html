@@ -17,15 +17,59 @@
 </head>
 <body>
 <div th:replace="~{fragments :: navi}"></div>
-<div class="py-5">
+<div class="row gutters-sm d-flex justify-content-center">
+    <div class="col-md-4">
+        <div class="card" style="width:400px">
+            <img class="card-img-top" th:src="@{${item.getImagePath()}}" alt="...">
+            <div class="card-body">
+                <div class="col-md-6">
+                    <h3 class="sm mb-1" th:text="|${item.getTitle}|"></h3>
+                    <hr>
+                    <div class="sm mb-1" th:text="|${item.getName}|"></div>
+                    <hr>
+                    <div class="sm mb-1" th:text="|판매자 / ${item.getUser.nick}|"></div>
+                    <hr>
+                    <div class="sm mb-1" th:text="|카테고리 / ${item.getCategory}|"></div>
+                    <hr>
+                    <div class="sm mb-1"
+                         th:text="|${item.getUploadedAt.getMonthValue}월 ${item.getUploadedAt.getDayOfMonth}일|"></div>
+                    <div th:if="${item.getUser.id == user.getId}">
+                        <button type="button" th:onclick="|location.href='@{/item/modify/{id}(id=${item.getId})}'|">수정하기
+                        </button>
+
+                        <button type="button" th:onclick="@{/item/delete/{id}(id=${item.getId()})}"
+                                style="text-decoration: none">삭제
+                        </button>
+
+                    </div>
+                    <div th:unless="${item.getUser.id == user.getId}">
+                        <button type="button" class="btn btn-success">채팅 하기</button>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                    <div class="col col-sm-push-9">
+                        <h3>상품 설명</h3>
+                    </div>
+                    <div class="col col-sm-push-9" th:text="${item.getContents}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="py-5">
     <div class="row gx-4 gx-lg-5 align-items-center">
         <div class="col-md-6">
-            <img src="card-img-top mb-5 mb-md-0" th:src="@{|${item.getImagePath()}|}" alt="..." width="400">
+            <img src="card-img-top mb-5 mb-md-0" th:src="@{${item.getImagePath()}}" alt="..." width="400">
         </div>
         <div class="col-md-6">
             <h3 class="sm mb-1" th:text="|${item.getTitle}|"></h3>
-            <div class="sm mb-1" th:text="|판매자 ${user.getNick}|"></div>
+            <hr>
+            <div class="sm mb-1" th:text="|판매자 ${item.getUser.nick}|"></div>
+            <hr>
             <div class="sm mb-1" th:text="${item.getCategory}"></div>
+            <hr>
             <div class="sm mb-1"
                  th:text="|${item.getUploadedAt.getMonthValue}월 ${item.getUploadedAt.getDayOfMonth}일|"></div>
             <div th:if="${item.getUser.id == user.getId}">
@@ -40,13 +84,14 @@
             </div>
             <br>
             <br>
+            <hr>
             <div class="col col-sm-push-9">
                 <h3>상품 설명</h3>
             </div>
             <div class="col col-sm-push-9" th:text="${item.getContents}"></div>
         </div>
     </div>
-</div>
+</div>-->
 
 
 </body>
