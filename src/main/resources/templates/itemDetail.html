@@ -37,7 +37,7 @@
                         <button type="button" th:onclick="|location.href='@{/item/modify/{id}(id=${item.getId})}'|">수정하기
                         </button>
 
-                        <button type="button" th:onclick="@{/item/delete/{id}(id=${item.getId()})}"
+                        <button type="button" th:onclick="|location.href='@{/item/delete/{id}(id=${item.getId()})}'|"
                                 style="text-decoration: none">삭제
                         </button>
 
