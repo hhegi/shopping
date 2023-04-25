@@ -44,17 +44,6 @@
                                     <input type="text" id="name" name="name" class="form-control form-control-lg"
                                            th:value="${item.getName()}" placeholder="제품명을 입력해주세요" required/>
                                 </div>
-                                <div class="form-outline mb-4">
-                                    <label for="category" class="form-label">카테고리</label>
-                                    <select class="form-select" id="category" name="category">
-                                        <option>의류</option>
-                                        <option>전자제품</option>
-                                        <option>장신구</option>
-                                        <option>식료품</option>
-                                        <option>기타</option>
-                                    </select>
-
-                                </div>
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="price">가격</label>
@@ -68,7 +57,8 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="imgFile" class="form-label">상품 이미지 업로드</label>
-                                    <input type="file" class="form-control" id="imgFile" name="imgFile">
+                                    <input type="file" class="form-control" id="imgFile" name="imgFile"
+                                    th:value="${item.getImagePath()}">
                                     <br/><br/>
                                 </div>
 

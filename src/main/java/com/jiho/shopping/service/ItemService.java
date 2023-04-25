@@ -69,7 +69,6 @@ public class ItemService {
         update.setName(item.getName());
         update.setContents(item.getContents());
         update.setPrice(item.getPrice());
-        update.setCategory(item.getCategory());
         update.setTitle(item.getTitle());
         update.setImageName(imgName);
         update.setImagePath("/files/" +imgName);

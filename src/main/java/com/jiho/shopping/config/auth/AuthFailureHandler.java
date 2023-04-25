@@ -21,12 +21,13 @@ public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
         throws IOException, ServletException{
         String errMsg;
         if(exception instanceof BadCredentialsException){
-            errMsg = "아이디 또는 비밀번호가 잘못되었습니다";
+            errMsg = "비밀번호가 잘못되었습니다";
         } else if (exception instanceof InternalAuthenticationServiceException){
             errMsg = "존재하지 않은 계정 입니다";
         } else if (exception instanceof AuthenticationCredentialsNotFoundException){
             errMsg = "인증 요청이 거부되었습니다";
         } else {
+
             errMsg = "알 수 없는 오류로 로그인에 실패하였습니다";
         }
         errMsg = URLEncoder.encode(errMsg,"UTF-8");
